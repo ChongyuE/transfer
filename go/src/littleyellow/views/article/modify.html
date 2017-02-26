@@ -1,0 +1,75 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Basic form</header>
+            <div class="panel-body">
+                <form method="post" action="/back/articlemodify" enctype="multipart/form-data" onsubmit="return checkForm()" class="form-horizontal">
+                    <input type="hidden" name="id" value="{{.article.Id}}">
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" id="tittle" name="tittle" value="{{.article.Tittle}}" class="form-control" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <label >封面</label>
+                        <input type="file" id="cover" name="cover" value="{{.article.Cover}}" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">类别</label>
+                        <select name="class">
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+                    </div>
+                    <div class="form-group">
+                        <label >内容</label>
+                        <script id="container" name="content" type="text/plain"></script>
+                        <!-- {{str2html .article.Content}} -->
+                         <script type="text/javascript">
+                            var ue = UE.getEditor('container',{initialFrameHeight:550,initialFrameWidth:500 });
+                            ue.ready(function(){
+                                ue.setContent({{str2html .article.Content}});    
+                            })
+                            // ue.setContent('123',true)
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label>下载地址</label>
+                        <!-- <input type="text" id="download"  class="form-control" placeholder="下载地址"> -->
+                        <script id="downpath" name="downpath" type="text/plain">{{str2html .article.Download}}</script>
+                        <!-- {{str2html .article.Download}} -->
+                        
+                         <script type="text/javascript">
+                            var ue1 = UE.getEditor('downpath',{initialFrameHeight:230,initialFrameWidth:500 });
+                            ue1.ready(function(){
+                                ue1.setContent({{str2html .article.Download}});    
+                            })
+                            // ue1.setContent('123',true)
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label>点击次数</label>
+                        <input type="text" id="click_times" name="click_times" value="{{.article.ClickTimes}}"  class="form-control" placeholder="点击次数">
+                    </div>
+                    <div class="form-group">
+                        <label>需要金币数</label>
+                        <input type="text" id="icon" name="icon" value="{{.article.Icon}}"  class="form-control" placeholder="需要金币数">
+                    </div>
+                    <div class="form-group">
+                        <label>排序方式</label>
+                        <input type="text" id="order" name="order" value="{{.article.Order}}"  class="form-control" placeholder="排序方式">
+                    </div>
+                     <div class="form-group">
+                        <label>发表时间</label>
+                       <!--  <input type="text" id="report_time" name="report_time"  class="combodate form-control" data-format="DD-MM-YYYY HH:mm" data-template="D MMM YYYY - HH : mm" name="datetime" value="21-12-2012 20:30"> -->
+                        <input type="text" id="report_time" name="report_time"  class="combodate form-control" data-format="YYYY-MM-DD HH:mm:ss" data-template="YYYY-MM-DD HH:mm:ss" name="report_time" value='{{dateformat .article.ReportTime "2006-01-02 15:04:05"}}'>
+               			 </div>
+                    </div>
+                    <div class="form-group">
+                        <input  type="submit" value="提交" />  
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+        <section class="hbox stretch">
+          <aside>
+            <section class="vbox">
+              <header class="header bg-white b-b clearfix">
+                <div class="row m-t-sm">
+                  <div class="col-sm-8 m-b-xs">
+                    <div class="btn-group">
+                
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                    <a href="/back/articleadd"  class="btn btn-sm btn-default"><i class="fa fa-plus"></i> Create</a> </div>
+                  <div class="col-sm-4 m-b-xs">
+                    <!-- <div > -->
+                    <form class="input-group" method="get" action="/back/articlelist">
+                      <input type="text" name="tittle" class="input-sm form-control" placeholder="Search">
+                      <span class="input-group-btn">
+                      <button class="btn btn-sm btn-default" type="submit">Go!</button>
+                      </span> </div>
+                      </form>
+                  <!-- </div> -->
+                </div>
+              </header>
+              <section class="scrollable wrapper w-f">
+                <section class="panel panel-default">
+                  <div class="table-responsive">
+                    <table class="table table-striped m-b-none">
+                      <thead>
+                        <tr>
+                          <!-- <th width="20"><input type="checkbox"></th> -->
+                          <th width="20"></th>
+                          <th class="th-sortable" data-toggle="class">标题<span class="th-sort"> <i class="fa fa-sort-down text"></i> <i class="fa fa-sort-up text-active"></i> <i class="fa fa-sort"></i> </span> </th>
+                          <th>点击</th>
+                          <th>发表时间</th>
+                          <th>添加时间</th>
+                          <th>操作</th>
+                          <th width="30"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        {{range $k, $v := .article_list}}
+                          <!-- <td><input type="checkbox" name="post[]" value="2"></td> -->
+                          <td><a href="#modal" data-toggle="modal"><i class="fa fa-search-plus"></i></a></td>
+                          <td>{{$v.Tittle}}</td>
+                          <td>{{$v.ClickTimes}}</td>
+                          <td>{{$v.ReportTime}}</td>
+                          <td>{{$v.AddTime}}</td>
+                          <td>
+                          <a href="/back/articlemodify?id={{$v.Id}}"><i class="fa fa-pencil"></i></a>
+                         <!--  <a href="#" data-toggle="class">
+                          <i class="fa fa-check text-success"></i>
+                           </a> -->
+                          <a href="/back/deletearticle?id={{$v.Id}}" ><i class="fa fa-times text-danger "></i></a>
+                          </td>
+                          <!-- <td><a href="#" class="active" data-toggle="class"><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a> --><!-- </td> -->
+                        </tr>
+                        {{end}}
+                     
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+              <footer class="footer bg-white b-t">
+                <div class="row text-center-xs">
+                  <div class="col-md-6 hidden-sm">
+                    <p class="text-muted m-t">total 50</p>
+                  </div>
+                  <div class="col-md-6 col-sm-12 text-right text-center-xs">
+                    <ul class="pagination pagination-sm m-t-sm m-b-none">
+                      <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                      <li class="active"><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                      <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </footer>
+            </section>
+          </aside>
+        </section>
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> </section>
+      <aside class="bg-light lter b-l aside-md hide" id="notes">
+        <div class="wrapper">Notification</div>
+      </aside>
